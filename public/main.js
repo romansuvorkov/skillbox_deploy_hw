@@ -87,7 +87,8 @@
       },
     },
     created() {
-      const wsProto = location.protocol === 'https' ? 'wss:' : 'ws:';
+      // const wsProto = location.protocol === 'https' ? 'wss:' : 'ws:';
+      const wsProto = 'ws:';
       wsClient = new WebSocket(`${wsProto}//${location.host}`);
 
       wsClient.addEventListener('open', () => {
