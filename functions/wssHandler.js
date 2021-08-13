@@ -30,7 +30,7 @@ const wssHandler = async (ws, req, clients, client) => {
         } else {
           const now = Date.now();
           end = parseInt(now, 10);
-          element.duration = end - element.start;
+          element.progress = end - element.start;
         }
         element.id = element._id;
         element.end = end;

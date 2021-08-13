@@ -7,11 +7,8 @@ const senderWS = async (client, baseName, collectionOne, collectionTwo, id, wsOb
         .collection(collectionTwo)
         .find({
           userId: session.userId,
-          // is_active: true,
         })
         .toArray();
-        // console.log('result');
-        // console.log(result);
       result.forEach((element) => {
         let end;
         const start = parseInt(element.start, 10);
@@ -21,12 +18,12 @@ const senderWS = async (client, baseName, collectionOne, collectionTwo, id, wsOb
         } else {
           const now = Date.now();
           end = parseInt(now, 10);
-          element.duration = end - element.start;
+          element.progress = end - element.start;
         }
         element.id = element._id;
         element.end = end;
       });
-      wsObj.send(JSON.stringify(result));
+      wsObj.send(JSON.stringify({type: 'all_timers', timers: result}));
 }
 
 module.exports = senderWS;
